@@ -11,7 +11,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: automake16 autoconf libtool gmp-devel
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-Conflicts: gmp < 4.1.4-15
+Conflicts: gmp < 4.2.1
 
 %description
 The MPFR library is a C library for multiple-precision floating-point
