@@ -1,17 +1,17 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 2.2.1
-Release: 1
+Release: 2%{dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
 Patch0: mpfr-2.2.1-upstream.patch
 License: LGPL 
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: automake16 autoconf libtool gmp-devel
+BuildRequires: autoconf libtool gmp-devel
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-Conflicts: gmp < 4.2.1
+Requires: gmp >= 4.2.1
 
 %description
 The MPFR library is a C library for multiple-precision floating-point
@@ -85,6 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Mon Aug 20 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-2
+- spec file cleanup (#253440)
+
 * Mon Jan 16 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-1
 - started
 
