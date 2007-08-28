@@ -5,7 +5,7 @@ Release: 2%{dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
 Patch0: mpfr-2.2.1-upstream.patch
-License: LGPL 
+License: LGPLv2+ and GPLv2+ and GFDL
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: autoconf libtool gmp-devel
