@@ -1,10 +1,10 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 2.2.1
-Release: 2%{dist}
+Version: 2.3.0
+Release: 1%{dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
-Patch0: mpfr-2.2.1-upstream.patch
+Patch0: mpfr-2.3.0-upstream.patch
 License: LGPLv2+ and GPLv2+ and GFDL
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -41,7 +41,7 @@ install the mpfr package.
 
 %build
 
-%configure --disable-assert --enable-shared
+%configure --disable-assert
 make %{?_smp_mflags}
 
 %install
@@ -85,6 +85,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Thu Sep 20 2007 Ivana Varekova <varekova@redhat.com> 2.3.0-1
+- update to 2.3.0
+- fix license flag
+
 * Mon Aug 20 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-2
 - spec file cleanup (#253440)
 
