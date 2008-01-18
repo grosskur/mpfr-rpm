@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
-* Fri Jan 18 2007 Ivana Varekova <varekova@redhat.com> 2.3.0-2
+* Fri Jan 18 2008 Ivana Varekova <varekova@redhat.com> 2.3.0-2
 - rebuilt
 
 * Thu Sep 20 2007 Ivana Varekova <varekova@redhat.com> 2.3.0-1
