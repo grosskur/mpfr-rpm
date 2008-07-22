@@ -1,10 +1,9 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 2.3.0
-Release: 3%{?dist}
+Version: 2.3.1
+Release: 1%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
-Patch0: mpfr-2.3.0-upstream.patch
 License: LGPLv2+ and GPLv2+ and GFDL
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -37,7 +36,6 @@ install the mpfr package.
 
 %prep
 %setup -q
-%patch0 -p1 -b .up
 
 %build
 
@@ -85,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Mon Jul 21 2008 Ivana Varekova <varekova@redhat.com> - 2.3.1-1
+- update to 2.3.1
+
 * Wed Feb 20 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 2.3.0-3
 - Autorebuild for GCC 4.3
 
