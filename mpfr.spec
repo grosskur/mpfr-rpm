@@ -1,6 +1,6 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 2.3.2
+Version: 2.4.0
 Release: 1%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
@@ -83,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Wed Feb  4 2009 Ivana Varekova <varekova@redhat.com> - 2.4.0-1
+- update to 2.4.0
+
 * Wed Oct 15 2008 Ivana Varekova <varekova@redhat.com> - 2.3.2-1
 - update to 2.3.2
 
