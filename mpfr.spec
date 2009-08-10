@@ -1,7 +1,7 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 2.4.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
 License: LGPLv2+ and GPLv2+ and GFDL
@@ -61,11 +61,15 @@ make %{?_smp_mflags} check
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info %{_infodir}/mpfr.info.gz %{_infodir}/dir || :
+if [ -f %{_infodir}/mpfr.info.gz ]; then
+    /sbin/install-info %{_infodir}/mpfr.info.gz %{_infodir}/dir || :
+fi
 
 %preun devel
 if [ "$1" = 0 ]; then
-   /sbin/install-info --delete %{_infodir}/mpfr.info.gz %{_infodir}/dir || :
+    if [ -f %{_infodir}/mpfr.info.gz ]; then
+	/sbin/install-info --delete %{_infodir}/mpfr.info.gz %{_infodir}/dir || :
+    fi
 fi
 
 %clean
@@ -83,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Mon Aug 10 2009 Ivana Varekova <varekova redhat com> 2.4.1-3
+- fix installation with --excludedocs option (#515958)
+
 * Sat Jul 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
