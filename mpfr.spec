@@ -1,9 +1,9 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 2.4.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 URL: http://www.mpfr.org/
-Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.bz2
+Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.lzma
 License: LGPLv2+ and GPLv2+ and GFDL
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Wed Aug 12 2009 Ville Skyttä <ville.skytta@iki.fi> - 2.4.1-4
+- Use lzma compressed upstream tarball.
+
 * Mon Aug 10 2009 Ivana Varekova <varekova redhat com> 2.4.1-3
 - fix installation with --excludedocs option (#515958)
 
