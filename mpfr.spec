@@ -1,9 +1,9 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 2.4.1
-Release: 5%{?dist}
+Version: 2.4.2
+Release: 1%{?dist}
 URL: http://www.mpfr.org/
-Source0: http://www.mpfr.org/mpfr-current/mpfr-%{version}.tar.lzma
+Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.bz2
 License: LGPLv2+ and GPLv2+ and GFDL
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -52,6 +52,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.a
 cd ..
+mkdir $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
+mv $RPM_BUILD_ROOT/%{_docdir}/%{name}/ $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
 
 
 %check
@@ -88,6 +90,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Fri Dec 18 2009 Ivana Hutarova Varekova <varekova@redhat.com> 2.4.2-1
+- update to 2.4.2
+
 * Fri Nov 13 2009 Ivana Varekova <varekova@redhat.com> 2.4.1-5
 - fix 537328 - mpfr-devel should "Requires: gmp-devel"
 
