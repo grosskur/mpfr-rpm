@@ -1,7 +1,7 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 3.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.bz2
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
@@ -35,7 +35,7 @@ Requires(preun): /sbin/install-info
 Requires: gmp-devel
 
 %description devel
-The static libraries, header files and documentation for using the MPFR 
+Header files and documentation for using the MPFR 
 multiple-precision floating-point library in applications.
 
 If you want to develop applications which will use the MPFR library,
@@ -99,6 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Wed Dec  1 2010 Ivana Hutarova Varekova <varekova@redhat.com> 3.0.0-2
+- fix -devel description (see 603021#c3)
+
 * Tue Nov 16 2010 Ivana Hutarova Varekova <varekova@redhat.com> 3.0.0-1
 - update to 3.0.0
 - created links and provides to .1
