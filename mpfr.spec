@@ -1,7 +1,7 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 3.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.bz2
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
@@ -12,11 +12,10 @@ BuildRequires: autoconf libtool gmp-devel
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Requires: gmp >= 4.2.1
-%ifarch %{ix86}
-Provides: libmpfr.so.1
-%endif
-%ifarch x86_64
+%ifarch x86_64 s390x sparc64 ppc64
 Provides: libmpfr.so.1()(64bit)
+%else
+Provides: libmpfr.so.1
 %endif
 
 %description
@@ -99,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Tue Dec  7 2010 Dan Horák <dan[at]danny.cz> 3.0.0-3
+- update the compat Provides for non-x86 arches
+
 * Wed Dec  1 2010 Ivana Hutarova Varekova <varekova@redhat.com> 3.0.0-2
 - fix -devel description (see 603021#c3)
 
