@@ -1,9 +1,9 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 3.0.0
-Release: 4%{?dist}.2
+Version: 3.1.0
+Release: 1%{?dist}
 URL: http://www.mpfr.org/
-Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.bz2
+Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.xz
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
 License: LGPLv3+ and GPLv3+ and GFDL
 Group: System Environment/Libraries
@@ -12,11 +12,6 @@ BuildRequires: autoconf libtool gmp-devel
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Requires: gmp >= 4.2.1
-%ifarch x86_64 s390x sparc64 ppc64
-Provides: libmpfr.so.1()(64bit)
-%else
-Provides: libmpfr.so.1
-%endif
 
 %description
 The MPFR library is a C library for multiple-precision floating-point
@@ -51,8 +46,8 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-iconv  -f iso-8859-1 -t utf-8 mpfr.info >mpfr.info.aux
-mv mpfr.info.aux mpfr.info
+iconv  -f iso-8859-1 -t utf-8 doc/mpfr.info > doc/mpfr.info.aux
+mv doc/mpfr.info.aux doc/mpfr.info
 make install DESTDIR=$RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
@@ -60,9 +55,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.a
 cd ..
 mkdir $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 mv $RPM_BUILD_ROOT/%{_docdir}/%{name}/ $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
-ln -s libmpfr.so.4.0.0 $RPM_BUILD_ROOT%{_libdir}/libmpfr.so.1
-ln -s libmpfr.so.4.0.0 $RPM_BUILD_ROOT%{_libdir}/libmpfr.so.1.2.2
-
 
 %check
 make %{?_smp_mflags} check
@@ -98,6 +90,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/mpfr.info*
 
 %changelog
+* Thu Nov 10 2011 Peter Schiffer <pschiffe@redhat.com> - 3.1.0-1
+- resolves: #743237
+  update to 3.1.0
+- removed compatibility symlinks and provides
+
 * Wed Oct 26 2011 Marcela Mašláňová <mmaslano@redhat.com> - 3.0.0-4.2
 - rebuild with new gmp without compat lib
 
