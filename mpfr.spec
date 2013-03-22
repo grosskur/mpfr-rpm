@@ -1,7 +1,7 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
-Version: 3.1.1
-Release: 2%{?dist}
+Version: 3.1.2
+Release: 1%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.xz
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
@@ -84,6 +84,9 @@ fi
 %{_infodir}/mpfr.info*
 
 %changelog
+* Fri Mar 22 2013 Frantisek Kluknavsky <fkluknav@redhat.com> - 3.1.2-1
+- Rebase to 3.1.2
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.1.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
