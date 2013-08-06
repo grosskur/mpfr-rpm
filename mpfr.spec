@@ -1,7 +1,7 @@
 Summary: A C library for multiple-precision floating-point computations
 Name: mpfr
 Version: 3.1.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 URL: http://www.mpfr.org/
 Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.xz
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
@@ -39,7 +39,7 @@ install the mpfr package.
 %setup -q
 
 %build
-%configure --disable-assert
+%configure --disable-assert --disable-static
 make %{?_smp_mflags}
 
 %install
@@ -48,10 +48,10 @@ mv doc/mpfr.info.aux doc/mpfr.info
 make install DESTDIR=$RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
-rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.a
-cd ..
+%if 0%{?fedora} < 20
 mkdir $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 mv $RPM_BUILD_ROOT/%{_docdir}/%{name}/ $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
+%endif
 
 %check
 make %{?_smp_mflags} check
@@ -84,6 +84,12 @@ fi
 %{_infodir}/mpfr.info*
 
 %changelog
+* Tue Aug 06 2013 Ralf Corsépius <corsepiu@fedoraproject.org> - 3.1.2-4
+- Install docs into unversioned docdir (Fix FTBFS RHBZ#992296).
+- Append --disable-static to %%configure.
+- Fix broken %%changelog date.
+- Remove stray cd ..
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.1.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
@@ -173,6 +179,6 @@ fi
 * Mon Aug 20 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-2
 - spec file cleanup (#253440)
 
-* Mon Jan 16 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-1
+* Tue Jan 16 2007 Ivana Varekova <varekova@redhat.com> 2.2.1-1
 - started
 
