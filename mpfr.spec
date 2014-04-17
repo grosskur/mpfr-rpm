@@ -1,16 +1,18 @@
+%global real_name mpfr
+
 Summary: A C library for multiple-precision floating-point computations
-Name: mpfr
+Name: %{real_name}31
 Version: 3.1.2
 Release: 4%{?dist}
 URL: http://www.mpfr.org/
-Source0: http://www.mpfr.org/mpfr-current/%{name}-%{version}.tar.xz
+Source0: http://www.mpfr.org/mpfr-current/%{real_name}-%{version}.tar.xz
 # GFDL  (mpfr.texi, mpfr.info and fdl.texi)
 License: LGPLv3+ and GPLv3+ and GFDL
 Group: System Environment/Libraries
 BuildRequires: autoconf libtool gmp-devel
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
-Requires: gmp >= 4.2.1
+Requires: gmp60 >= 6.0.0
 
 %description
 The MPFR library is a C library for multiple-precision floating-point
@@ -25,7 +27,7 @@ Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
-Requires: gmp-devel
+Requires: gmp60-devel
 
 %description devel
 Header files and documentation for using the MPFR 
@@ -36,7 +38,7 @@ you'll need to install the mpfr-devel package.  You'll also need to
 install the mpfr package.
 
 %prep
-%setup -q
+%setup -q -n %{real_name}-%{version}
 
 %build
 %configure --disable-assert --disable-static
@@ -50,7 +52,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libmpfr.la
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 %if 0%{?fedora} < 20
 mkdir $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
-mv $RPM_BUILD_ROOT/%{_docdir}/%{name}/ $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
+mv $RPM_BUILD_ROOT/%{_docdir}/%{real_name}/ $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}/
 %endif
 
 %check
